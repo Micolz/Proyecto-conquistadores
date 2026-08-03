@@ -48,7 +48,7 @@ function DetalleClub() {
           </div>
         )}
       </section>
-      n
+
       <section className="mt-8">
         <h2 className="mb-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">
           Miembros ({miembrosDelClub.length})
