@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# Proyecto Conquistadores
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema web para la gestión de clubes de conquistadores: clubes, unidades,
+miembros, clases y especialidades.
 
-Currently, two official plugins are available:
+Es una aplicación de **solo lectura** construida sobre datos de prueba: todavía no
+hay backend ni persistencia. El objetivo actual es modelar el dominio y la
+navegación entre sus entidades.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Créditos
 
-## React Compiler
+El planteamiento y la especificación del sistema son del **Ing. Pedro Villa Casas**,
+docente del proyecto. La implementación es de [Micolz](https://github.com/Micolz).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the ESLint configuration
+| Herramienta  | Versión | Para qué                       |
+| ------------ | ------- | ------------------------------ |
+| React        | 19      | Interfaz                       |
+| TypeScript   | 6       | Tipado del modelo de datos     |
+| Vite         | 8       | Servidor de desarrollo y build |
+| React Router | 8       | Navegación entre páginas       |
+| Tailwind CSS | 4       | Estilos                        |
+| Prettier     | 3.9     | Formato del código             |
+| ESLint       | 10      | Reglas de código               |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Requiere **Node 22.22 o superior** (ver `.nvmrc`).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Cómo correrlo
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install     # instalar dependencias
+npm run dev     # servidor de desarrollo en http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Otros comandos:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build         # compila TypeScript y genera dist/
+npm run preview       # sirve el build de producción
+npm run lint          # ESLint sobre todo el proyecto
+npm run format        # aplica Prettier
+npm run format:check  # verifica el formato sin escribir
 ```
+
+## Modelo de datos
+
+Los tipos viven en `src/types/index.ts` y los datos de prueba en
+`src/data/mockData.ts`.
+
+- **Club** — nombre, lema, logo, ciudad, estado, fechas de inicio y fin, si está activo.
+- **Unidad** — grupo dentro de un club, con capitán y consejero (referencias a miembros) y sexo.
+- **Miembro** — pertenece a un club y a una clase, opcionalmente a una unidad. Guarda
+  datos de seguridad: padres, contacto de emergencia, alergias y cardiopatía.
+- **Clase** — las siete clases progresivas (Amigo, Compañero, Explorador, Orientador,
+  Viajero, Guía, Guía Mayor), cada una con color y orden.
+- **Especialidad** — nombre, código, año, nivel y área. Las áreas son seis
+  (`HM`, `AA`, `AP`, `AR`, `EN`, `AD`), con sus nombres en `nombresDeArea`.
+
+Las relaciones se resuelven por id: una unidad apunta a su `clubId`, un miembro a su
+`clubId`, `claseId` y `unidadId`.
+
+### Pendiente del modelo
+
+Del planteamiento original faltan por modelar: **Directiva**, **Instructor**,
+**Investidura**, **Asistencia** (con puntualidad y uniforme) y el historial de roles
+multigeneracional.
+
+## Estructura
+
+```
+src/
+├── App.tsx              Rutas y cabecera
+├── main.tsx             Punto de entrada
+├── types/index.ts       Interfaces del dominio
+├── data/mockData.ts     Datos de prueba
+├── pages/               Vistas completas (una por ruta)
+│   ├── ListaClubes.tsx
+│   ├── DetalleClub.tsx
+│   ├── ListaEspecialidades.tsx
+│   └── NoEncontrado.tsx
+└── components/          Piezas reutilizables
+    ├── ClubCard.tsx
+    ├── UnidadCard.tsx
+    └── EspecialidadCard.tsx
+```
+
+## Rutas
+
+| Ruta              | Página                              |
+| ----------------- | ----------------------------------- |
+| `/`               | Lista de clubes                     |
+| `/clubes/:clubId` | Detalle de un club con sus unidades |
+| `*`               | Página de no encontrado             |
