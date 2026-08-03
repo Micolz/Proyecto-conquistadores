@@ -134,12 +134,11 @@ export const especialidades: Especialidad[] = [
   { id: 6, nombre: 'Fruticultura 1', area: 'AA', codigo: 'AA-008', ano: 1929, nivel: 1 },
 ]
 
-
 export const nombresDeArea: Record<AreaCodigo, string> = {
   HM: 'Habilidades Manuales',
   EN: 'Estudio de la Naturaleza',
   AA: 'Actividades Agrícolas',
   AP: 'Actividades Profesionales',
   AR: 'Actividades Recreativas',
-  AD: 'Habilidades Domésticas'
+  AD: 'Habilidades Domésticas',
 }

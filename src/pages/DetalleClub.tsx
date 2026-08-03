@@ -20,7 +20,6 @@ function DetalleClub() {
       <Link to="/" className="text-sm text-blue-700 underline">
         ← Volver a clubes
       </Link>
-
       <header className="mt-4">
         <h1 className="text-3xl font-bold text-gray-900">{club.nombre}</h1>
         <p className="mt-1 text-gray-600 italic">{club.lema}</p>
@@ -28,7 +27,6 @@ function DetalleClub() {
           {club.ciudad}, {club.estado} · Fundado en {club.fechaInicio.slice(0, 4)}
         </p>
       </header>
-
       <section className="mt-8">
         <h2 className="mb-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">
           Unidades ({unidadesDelClub.length})
@@ -50,7 +48,7 @@ function DetalleClub() {
           </div>
         )}
       </section>
-n
+      n
       <section className="mt-8">
         <h2 className="mb-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">
           Miembros ({miembrosDelClub.length})

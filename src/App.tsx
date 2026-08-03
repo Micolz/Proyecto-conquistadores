@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<ListaClubes />} />
         <Route path="/clubes/:clubId" element={<DetalleClub />} />
         <Route path="*" element={<NoEncontrado />} />
-        <Route path="/lista-especialiades" element={<ListaEspecialidades/>}/>
+        <Route path="/lista-especialiades" element={<ListaEspecialidades />} />
       </Routes>
     </div>
   )

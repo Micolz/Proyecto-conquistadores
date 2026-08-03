@@ -33,23 +33,23 @@ export interface Miembro {
 }
 
 export interface Unidad {
-    id: number
-    nombre: string
-    lema: string
-    logo: string
-    clubId: number
-    capitanId: number // referencia a un miembro
-    consejeroId: number
-    sexo: 'M' | 'F'
+  id: number
+  nombre: string
+  lema: string
+  logo: string
+  clubId: number
+  capitanId: number // referencia a un miembro
+  consejeroId: number
+  sexo: 'M' | 'F'
 }
 
 export interface Especialidad {
-    id: number
-    nombre: string
-    area: AreaCodigo 
-    codigo: string
-    ano: number
-    nivel: number
+  id: number
+  nombre: string
+  area: AreaCodigo
+  codigo: string
+  ano: number
+  nivel: number
 }
 
 export type AreaCodigo = 'HM' | 'AA' | 'AP' | 'AR' | 'EN' | 'AD'

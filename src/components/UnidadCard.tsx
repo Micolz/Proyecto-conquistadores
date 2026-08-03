@@ -55,9 +55,7 @@ function UnidadCard({ unidad, capitan, consejero, integrantes }: UnidadCardProps
                 <span className={consejeroNoCoincide ? 'font-medium' : 'text-gray-500'}>
                   ({consejero.sexo})
                 </span>
-                {consejeroNoCoincide && (
-                  <span title={`La unidad es ${unidad.sexo}`}> ⚠</span>
-                )}
+                {consejeroNoCoincide && <span title={`La unidad es ${unidad.sexo}`}> ⚠</span>}
               </>
             ) : (
               <span className="text-gray-400 italic">Sin asignar</span>
@@ -87,9 +85,7 @@ function UnidadCard({ unidad, capitan, consejero, integrantes }: UnidadCardProps
                   <span className={sexoNoCoincide ? 'font-medium' : 'text-gray-500'}>
                     ({integrante.sexo})
                   </span>
-                  {sexoNoCoincide && (
-                    <span title={`La unidad es ${unidad.sexo}`}> ⚠</span>
-                  )}
+                  {sexoNoCoincide && <span title={`La unidad es ${unidad.sexo}`}> ⚠</span>}
                 </li>
               )
             })}
