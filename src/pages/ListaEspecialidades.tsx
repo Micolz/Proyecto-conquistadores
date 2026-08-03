@@ -8,11 +8,7 @@ function ListaEspecialidades() {
         <h1 className="mb-6 text-3xl font-bold text-gray-900">Especialidades</h1>
         <div className="space-y-8">
           {especialidades.map(especialidad => {
-            return (
-              <section key={especialidad.id}>
-                <EspecialidadCard especialidad={especialidad} />
-              </section>
-            )
+            return <EspecialidadCard key={especialidad.id} especialidad={especialidad} />
           })}
         </div>
       </div>
