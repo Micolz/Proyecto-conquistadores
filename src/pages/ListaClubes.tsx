@@ -1,22 +1,34 @@
 import { clubes, unidades } from '../data/mockData'
 import ClubCard from '../components/ClubCard'
 import ListaUnidades from '../components/ListaUnidades'
-import { useState } from 'react'
+import { useSearchParams } from 'react-router'
+import type { ChangeEvent } from 'react'
 function sinAcentos(texto: string) {
   return texto
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
 }
-function ListaClubes() {
-  const [busqueda, setBusqueda] = useState('')
 
+function ListaClubes() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+
+    if (value) {
+      setSearchParams({ query: value }, { replace: true })
+    } else {
+      setSearchParams({}, { replace: true })
+    }
+  }
+  const busqueda = searchParams.get('query') || ''
   const lowBusqueda = sinAcentos(busqueda)
   const clubesFiltrados = clubes.filter(club => {
     const lowCNombre = sinAcentos(club.nombre)
     const lowCCiudad = sinAcentos(club.ciudad)
     return lowCNombre.includes(lowBusqueda) || lowCCiudad.includes(lowBusqueda)
   })
+
   return (
     <div className="px-4 py-8">
       <div className="mx-auto max-w-5xl">
@@ -29,7 +41,7 @@ function ListaClubes() {
           <input
             type="search"
             value={busqueda}
-            onChange={e => setBusqueda(e.target.value)}
+            onChange={handleChange}
             placeholder="Escribe una ciudad o nombre"
             className="w-full max-w-sm rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
           />
