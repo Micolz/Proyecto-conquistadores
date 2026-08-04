@@ -2,13 +2,20 @@ import { clubes, miembros, unidades } from '../data/mockData'
 import ClubCard from '../components/ClubCard'
 import UnidadCard from '../components/UnidadCard'
 import { useState } from 'react'
-
+function sinAcentos(texto: string) {
+  return texto
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+}
 function ListaClubes() {
-  const [ciudad, setCiudad] = useState('')
+  const [busqueda, setBusqueda] = useState('')
+
+  const lowBusqueda = sinAcentos(busqueda)
   const clubesFiltrados = clubes.filter(club => {
-    const lowCiudad = ciudad.toLowerCase()
-    const lowClubCiudad = club.ciudad.toLowerCase()
-    return lowClubCiudad.includes(lowCiudad)
+    const lowCNombre = sinAcentos(club.nombre)
+    const lowCCiudad = sinAcentos(club.ciudad)
+    return lowCNombre.includes(lowBusqueda) || lowCCiudad.includes(lowBusqueda)
   })
   return (
     <div className="px-4 py-8">
@@ -17,13 +24,13 @@ function ListaClubes() {
 
         <label className="mb-6 block">
           <span className="mb-1 block text-xs font-semibold tracking-wide text-gray-500 uppercase">
-            Filtrar por ciudad
+            Filtrar por ciudad/nombre
           </span>
           <input
             type="search"
-            value={ciudad}
-            onChange={e => setCiudad(e.target.value)}
-            placeholder="Escribe una ciudad…"
+            value={busqueda}
+            onChange={e => setBusqueda(e.target.value)}
+            placeholder="Escribe una ciudad o nombre"
             className="w-full max-w-sm rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
           />
         </label>
