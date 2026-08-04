@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router'
+import { Link, NavLink, Route, Routes } from 'react-router'
 import ListaClubes from './pages/ListaClubes'
 import DetalleClub from './pages/DetalleClub'
 import NoEncontrado from './pages/NoEncontrado'
@@ -13,18 +13,23 @@ function App() {
             Club de Conquistadores
           </Link>
           <nav className="flex gap-5">
-            <Link
+            <NavLink
               to="/"
-              className="text-sm font-medium text-blue-700 transition hover:text-blue-900"
+              end
+              className={({ isActive }) =>
+                `text-sm transition ${isActive ? 'font-semibold text-blue-700' : 'text-gray-600 hover:text-blue-700'}`
+              }
             >
               Clubes
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/especialidades"
-              className="text-sm font-medium text-blue-700 transition hover:text-blue-900"
+              className={({ isActive }) =>
+                `text-sm transition ${isActive ? 'font-semibold text-blue-700' : 'text-gray-600 hover:text-blue-700'}`
+              }
             >
               Especialidades
-            </Link>
+            </NavLink>
           </nav>
         </div>
       </header>
