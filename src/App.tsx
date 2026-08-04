@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="border-b border-gray-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="text-lg font-bold text-blue-700">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
+          <Link to="/" className="text-base font-bold text-blue-700 sm:text-lg">
             Club de Conquistadores
           </Link>
-          <nav className="flex gap-5">
+          <nav className="flex gap-4 sm:gap-5">
             <NavLink
               to="/"
               end

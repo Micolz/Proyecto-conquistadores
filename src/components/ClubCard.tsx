@@ -29,7 +29,7 @@ function ClubCard({ club }: ClubCardProps) {
           <p className="mt-1 text-sm text-gray-600 italic">{club.lema}</p>
         </div>
 
-        <dl className="flex gap-8 text-sm">
+        <dl className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
           <div>
             <dt className="text-xs tracking-wide text-gray-500 uppercase">Sede</dt>
             <dd className="mt-0.5 text-gray-800">

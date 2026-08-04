@@ -56,7 +56,7 @@ function ListaClubes() {
                 <section key={club.id}>
                   <ClubCard club={club} />
 
-                  <div className="mt-4 ml-4 border-l-2 border-gray-200 pl-5">
+                  <div className="mt-4 border-l-2 border-gray-200 pl-4 sm:ml-4 sm:pl-5">
                     <h3 className="mb-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">
                       Unidades ({unidadesDelClub.length})
                     </h3>
