@@ -81,6 +81,7 @@ src/
 │   └── NoEncontrado.tsx
 └── components/          Piezas reutilizables
     ├── ClubCard.tsx
+    ├── ListaUnidades.tsx
     ├── UnidadCard.tsx
     └── EspecialidadCard.tsx
 ```
@@ -89,6 +90,7 @@ src/
 
 | Ruta              | Página                              |
 | ----------------- | ----------------------------------- |
-| `/`               | Lista de clubes                     |
+| `/`               | Lista de clubes, con buscador       |
 | `/clubes/:clubId` | Detalle de un club con sus unidades |
+| `/especialidades` | Lista de especialidades             |
 | `*`               | Página de no encontrado             |
