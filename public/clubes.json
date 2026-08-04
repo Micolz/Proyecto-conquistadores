@@ -1,0 +1,48 @@
+{
+  "clubes": [
+    {
+      "id": 1,
+      "nombre": "Águilas Reales",
+      "lema": "Volando alto con fe",
+      "logo": "",
+      "fechaInicio": "1986-01-01",
+      "fechaFin": "",
+      "ciudad": "Culiacán",
+      "estado": "Sinaloa",
+      "activo": true
+    },
+    {
+      "id": 2,
+      "nombre": "Beta Crucis",
+      "lema": "Luz en el camino",
+      "logo": "",
+      "fechaInicio": "2005-01-01",
+      "fechaFin": "",
+      "ciudad": "Culiacán",
+      "estado": "Sinaloa",
+      "activo": true
+    },
+    {
+      "id": 3,
+      "nombre": "Delfines",
+      "lema": "Nadando hacia la meta",
+      "logo": "",
+      "fechaInicio": "2000-01-01",
+      "fechaFin": "",
+      "ciudad": "Los Mochis",
+      "estado": "Sinaloa",
+      "activo": true
+    },
+    {
+      "id": 4,
+      "nombre": "Polaris",
+      "lema": "Guiados por la estrella",
+      "logo": "",
+      "fechaInicio": "2008-01-01",
+      "fechaFin": "",
+      "ciudad": "Los Mochis",
+      "estado": "Sinaloa",
+      "activo": true
+    }
+  ]
+}
