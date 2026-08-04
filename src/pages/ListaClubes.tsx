@@ -1,6 +1,6 @@
-import { clubes, miembros, unidades } from '../data/mockData'
+import { clubes, unidades } from '../data/mockData'
 import ClubCard from '../components/ClubCard'
-import UnidadCard from '../components/UnidadCard'
+import ListaUnidades from '../components/ListaUnidades'
 import { useState } from 'react'
 function sinAcentos(texto: string) {
   return texto
@@ -49,23 +49,7 @@ function ListaClubes() {
                       Unidades ({unidadesDelClub.length})
                     </h3>
 
-                    {unidadesDelClub.length === 0 ? (
-                      <p className="text-sm text-gray-400 italic">
-                        Este club no tiene unidades registradas.
-                      </p>
-                    ) : (
-                      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                        {unidadesDelClub.map(unidad => (
-                          <UnidadCard
-                            key={unidad.id}
-                            unidad={unidad}
-                            capitan={miembros.find(miembro => miembro.id === unidad.capitanId)}
-                            consejero={miembros.find(miembro => miembro.id === unidad.consejeroId)}
-                            integrantes={miembros.filter(miembro => miembro.unidadId === unidad.id)}
-                          />
-                        ))}
-                      </div>
-                    )}
+                    <ListaUnidades unidades={unidadesDelClub} />
                   </div>
                 </section>
               )
