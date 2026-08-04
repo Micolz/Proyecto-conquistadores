@@ -1,17 +1,21 @@
 import { Link, useParams } from 'react-router'
-import { clases, clubes, miembros, unidades } from '../data/mockData'
-import ListaUnidades from '../components/ListaUnidades'
+import { clases, miembros, unidades } from '../data/mockData'
 import NoEncontrado from './NoEncontrado'
 
+import ListaUnidades from '../components/ListaUnidades'
+import { useClubes } from '../hooks/useClubes'
+
 function DetalleClub() {
+  const { clubes, cargando, error } = useClubes()
   // useParams siempre devuelve strings (o undefined): la URL es texto.
   const { clubId } = useParams()
+  if (cargando) return <p className="text-sm text-gray-500">Cargando...</p>
+  if (error) return <p className="text-sm text-red-600">{error}</p>
   const club = clubes.find(club => club.id === Number(clubId))
 
   if (!club) {
     return <NoEncontrado />
   }
-
   const unidadesDelClub = unidades.filter(unidad => unidad.clubId === club.id)
   const miembrosDelClub = miembros.filter(miembro => miembro.clubId === club.id)
 

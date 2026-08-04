@@ -2,8 +2,8 @@ import { unidades } from '../data/mockData'
 import ClubCard from '../components/ClubCard'
 import ListaUnidades from '../components/ListaUnidades'
 import { useSearchParams } from 'react-router'
-import { useEffect, useState, type ChangeEvent } from 'react'
-import type { Club } from '../types'
+import { type ChangeEvent } from 'react'
+import { useClubes } from '../hooks/useClubes'
 function sinAcentos(texto: string) {
   return texto
     .normalize('NFD')
@@ -12,19 +12,7 @@ function sinAcentos(texto: string) {
 }
 
 function ListaClubes() {
-  const [clubes, setClubes] = useState<Club[]>([])
-  const [cargando, setCargando] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  useEffect(() => {
-    fetch('/clubes.json')
-      .then(res => {
-        if (!res.ok) throw new Error('No se pudieron cargar los clubes')
-        return res.json()
-      })
-      .then(data => setClubes(data.clubes))
-      .catch(err => setError(err.message))
-      .finally(() => setCargando(false))
-  }, [])
+  const { clubes, cargando, error } = useClubes()
   const [searchParams, setSearchParams] = useSearchParams()
   if (cargando) return <p className="text-sm text-gray-500">Cargando...</p>
   if (error) return <p className="text-sm text-red-600">{error}</p>
