@@ -1,0 +1,9 @@
+[
+  { "id": 1, "nombre": "Amigo", "color": "#FFC107", "logo": "", "orden": 1 },
+  { "id": 2, "nombre": "Compañero", "color": "#4CAF50", "logo": "", "orden": 2 },
+  { "id": 3, "nombre": "Explorador", "color": "#2196F3", "logo": "", "orden": 3 },
+  { "id": 4, "nombre": "Orientador", "color": "#9C27B0", "logo": "", "orden": 4 },
+  { "id": 5, "nombre": "Viajero", "color": "#FF5722", "logo": "", "orden": 5 },
+  { "id": 6, "nombre": "Guía", "color": "#607D8B", "logo": "", "orden": 6 },
+  { "id": 7, "nombre": "Guía Mayor", "color": "#212121", "logo": "", "orden": 7 }
+]

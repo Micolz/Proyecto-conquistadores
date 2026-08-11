@@ -1,0 +1,51 @@
+[
+  { 
+    "id": 1, 
+    "nombre": "Arañas", 
+    "area": "EN", 
+    "codigo": "EN-001", 
+    "ano": 1928, 
+    "nivel": 2 
+  },
+  { 
+    "id": 2, 
+    "nombre": 
+    "Astronomía", 
+    "area": "EN", 
+    "codigo": "EN-002", 
+    "ano": 1928, 
+    "nivel": 2 
+  },
+  {
+    "id": 3,
+    "nombre": "Radioaficionado",
+    "area": "AP",
+    "codigo": "AP-004",
+    "ano": 1928,
+    "nivel": 3
+  },
+  {
+    "id": 4,
+    "nombre": "Aves domésticas",
+    "area": "EN",
+    "codigo": "EN-004",
+    "ano": 1928,
+    "nivel": 2
+  },
+  { 
+    "id": 5, 
+    "nombre": "Guitarra", 
+    "area": "HM", 
+    "codigo": "HM-087", 
+    "ano": 2012, 
+    "nivel": 2 
+  },
+  { 
+    "id": 6, 
+    "nombre": "Fruticultura 1", 
+    "area": "AA", 
+    "codigo": "AA-008", 
+    "ano": 1929, 
+    "nivel": 1 
+  }
+]

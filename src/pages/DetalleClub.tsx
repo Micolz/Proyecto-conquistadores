@@ -1,23 +1,29 @@
 import { Link, useParams } from 'react-router'
-import { clases, miembros, unidades } from '../data/mockData'
 import NoEncontrado from './NoEncontrado'
 
 import ListaUnidades from '../components/ListaUnidades'
-import { useClubes } from '../hooks/useClubes'
+import { useClases, useClubes, useMiembros, useUnidades } from '../hooks/recursos'
 
 function DetalleClub() {
-  const { clubes, cargando, error } = useClubes()
+  const clubes = useClubes()
+  const unidades = useUnidades()
+  const miembros = useMiembros()
+  const clases = useClases()
   // useParams siempre devuelve strings (o undefined): la URL es texto.
   const { clubId } = useParams()
+
+  const cargando = clubes.cargando || unidades.cargando || miembros.cargando || clases.cargando
+  const error = clubes.error ?? unidades.error ?? miembros.error ?? clases.error
+
   if (cargando) return <p className="text-sm text-gray-500">Cargando...</p>
   if (error) return <p className="text-sm text-red-600">{error}</p>
-  const club = clubes.find(club => club.id === Number(clubId))
+  const club = clubes.datos.find(club => club.id === Number(clubId))
 
   if (!club) {
     return <NoEncontrado />
   }
-  const unidadesDelClub = unidades.filter(unidad => unidad.clubId === club.id)
-  const miembrosDelClub = miembros.filter(miembro => miembro.clubId === club.id)
+  const unidadesDelClub = unidades.datos.filter(unidad => unidad.clubId === club.id)
+  const miembrosDelClub = miembros.datos.filter(miembro => miembro.clubId === club.id)
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
@@ -36,7 +42,7 @@ function DetalleClub() {
           Unidades ({unidadesDelClub.length})
         </h2>
 
-        <ListaUnidades unidades={unidadesDelClub} />
+        <ListaUnidades unidades={unidadesDelClub} miembros={miembros.datos} />
       </section>
 
       <section className="mt-8">
@@ -49,8 +55,8 @@ function DetalleClub() {
         ) : (
           <ul className="divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white text-sm">
             {miembrosDelClub.map(miembro => {
-              const clase = clases.find(clase => clase.id === miembro.claseId)
-              const unidad = unidades.find(unidad => unidad.id === miembro.unidadId)
+              const clase = clases.datos.find(clase => clase.id === miembro.claseId)
+              const unidad = unidades.datos.find(unidad => unidad.id === miembro.unidadId)
               return (
                 <li key={miembro.id} className="flex flex-wrap gap-x-4 px-4 py-2">
                   <span className="font-medium text-gray-900">{miembro.nombre}</span>

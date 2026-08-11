@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "fechaNacimiento": "2014-05-10",
+    "sexo": "M",
+    "clubId": 3,
+    "claseId": 1,
+    "padres": "Sr. y Sra. Pérez",
+    "contactoEmergencia": "667-000-0001"
+  },
+  {
+    "id": 2,
+    "nombre": "Teresa Gómez",
+    "fechaNacimiento": "2012-03-22",
+    "sexo": "F",
+    "clubId": 1,
+    "claseId": 2,
+    "unidadId": 1,
+    "padres": "Familia Gómez",
+    "contactoEmergencia": "667-000-0002"
+  },
+  {
+    "id": 3,
+    "nombre": "Andrea Herrera",
+    "fechaNacimiento": "2014-01-15",
+    "sexo": "F",
+    "clubId": 1,
+    "claseId": 2,
+    "unidadId": 2,
+    "padres": "Miguel Herrera",
+    "contactoEmergencia": "667-000-0003"
+  },
+  {
+    "id": 4,
+    "nombre": "Santiago Herrera",
+    "fechaNacimiento": "2016-07-08",
+    "sexo": "M",
+    "clubId": 1,
+    "claseId": 1,
+    "padres": "Miguel Herrera",
+    "contactoEmergencia": "667-000-0003"
+  }
+]

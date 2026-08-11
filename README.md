@@ -45,8 +45,9 @@ npm run format:check  # verifica el formato sin escribir
 
 ## Modelo de datos
 
-Los tipos viven en `src/types/index.ts` y los datos de prueba en
-`src/data/mockData.ts`.
+Los tipos viven en `src/types/index.ts`. Los datos se sirven como JSON desde
+`public/` y se piden con `fetch`: hay un archivo por entidad (`clubes.json`,
+`unidades.json`, `miembros.json`, `clases.json`, `especialidades.json`).
 
 - **Club** — nombre, lema, logo, ciudad, estado, fechas de inicio y fin, si está activo.
 - **Unidad** — grupo dentro de un club, con capitán y consejero (referencias a miembros) y sexo.
@@ -55,7 +56,9 @@ Los tipos viven en `src/types/index.ts` y los datos de prueba en
 - **Clase** — las siete clases progresivas (Amigo, Compañero, Explorador, Orientador,
   Viajero, Guía, Guía Mayor), cada una con color y orden.
 - **Especialidad** — nombre, código, año, nivel y área. Las áreas son seis
-  (`HM`, `AA`, `AP`, `AR`, `EN`, `AD`), con sus nombres en `nombresDeArea`.
+  (`HM`, `AA`, `AP`, `AR`, `EN`, `AD`), con sus nombres en `nombresDeArea`
+  (`src/constants.ts`) — son etiquetas de la interfaz, no datos, y por eso viven en
+  el código y no en el JSON.
 
 Las relaciones se resuelven por id: una unidad apunta a su `clubId`, un miembro a su
 `clubId`, `claseId` y `unidadId`.
@@ -69,11 +72,21 @@ multigeneracional.
 ## Estructura
 
 ```
+public/                  Servido tal cual desde la raíz
+├── clubes.json
+├── unidades.json
+├── miembros.json
+├── clases.json
+└── especialidades.json
+
 src/
 ├── App.tsx              Rutas y cabecera
 ├── main.tsx             Punto de entrada
+├── constants.ts         Etiquetas de la interfaz
 ├── types/index.ts       Interfaces del dominio
-├── data/mockData.ts     Datos de prueba
+├── hooks/               Lógica con estado, reutilizable
+│   ├── useDatos.ts      Hook genérico: fetch + carga + error
+│   └── recursos.ts      Un hook por entidad, sobre useDatos
 ├── pages/               Vistas completas (una por ruta)
 │   ├── ListaClubes.tsx
 │   ├── DetalleClub.tsx

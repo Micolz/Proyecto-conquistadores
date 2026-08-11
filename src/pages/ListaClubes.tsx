@@ -1,9 +1,9 @@
-import { unidades } from '../data/mockData'
 import ClubCard from '../components/ClubCard'
 import ListaUnidades from '../components/ListaUnidades'
 import { useSearchParams } from 'react-router'
 import { type ChangeEvent } from 'react'
-import { useClubes } from '../hooks/useClubes'
+import { useClubes, useMiembros, useUnidades } from '../hooks/recursos'
+
 function sinAcentos(texto: string) {
   return texto
     .normalize('NFD')
@@ -12,8 +12,14 @@ function sinAcentos(texto: string) {
 }
 
 function ListaClubes() {
-  const { clubes, cargando, error } = useClubes()
+  const clubes = useClubes()
+  const unidades = useUnidades()
+  const miembros = useMiembros()
   const [searchParams, setSearchParams] = useSearchParams()
+
+  const cargando = clubes.cargando || unidades.cargando || miembros.cargando
+  const error = clubes.error ?? unidades.error ?? miembros.error
+
   if (cargando) return <p className="text-sm text-gray-500">Cargando...</p>
   if (error) return <p className="text-sm text-red-600">{error}</p>
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +33,7 @@ function ListaClubes() {
   }
   const busqueda = searchParams.get('query') || ''
   const lowBusqueda = sinAcentos(busqueda)
-  const clubesFiltrados = clubes.filter(club => {
+  const clubesFiltrados = clubes.datos.filter(club => {
     const lowCNombre = sinAcentos(club.nombre)
     const lowCCiudad = sinAcentos(club.ciudad)
     return lowCNombre.includes(lowBusqueda) || lowCCiudad.includes(lowBusqueda)
@@ -55,7 +61,7 @@ function ListaClubes() {
             <p className="text-sm text-gray-400 italic">No se encontraron clubes.</p>
           ) : (
             clubesFiltrados.map(club => {
-              const unidadesDelClub = unidades.filter(unidad => unidad.clubId === club.id)
+              const unidadesDelClub = unidades.datos.filter(unidad => unidad.clubId === club.id)
               return (
                 <section key={club.id}>
                   <ClubCard club={club} />
@@ -65,7 +71,7 @@ function ListaClubes() {
                       Unidades ({unidadesDelClub.length})
                     </h3>
 
-                    <ListaUnidades unidades={unidadesDelClub} />
+                    <ListaUnidades unidades={unidadesDelClub} miembros={miembros.datos} />
                   </div>
                 </section>
               )

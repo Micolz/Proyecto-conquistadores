@@ -1,12 +1,12 @@
-import { miembros } from '../data/mockData'
-import type { Unidad } from '../types'
+import type { Miembro, Unidad } from '../types'
 import UnidadCard from './UnidadCard'
 
 interface ListaUnidadesProps {
   unidades: Unidad[]
+  miembros: Miembro[]
 }
 
-function ListaUnidades({ unidades }: ListaUnidadesProps) {
+function ListaUnidades({ unidades, miembros }: ListaUnidadesProps) {
   if (unidades.length === 0) {
     return <p className="text-sm text-gray-400 italic">Este club no tiene unidades registradas.</p>
   }

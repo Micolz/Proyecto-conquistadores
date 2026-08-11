@@ -1,4 +1,4 @@
-import { nombresDeArea } from '../data/mockData'
+import { nombresDeArea } from '../constants'
 import type { Especialidad } from '../types'
 
 interface EspecialidadCardProps {
