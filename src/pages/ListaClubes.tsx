@@ -1,3 +1,4 @@
+import Aviso from '../components/Aviso'
 import ClubCard from '../components/ClubCard'
 import ListaUnidades from '../components/ListaUnidades'
 import { useSearchParams } from 'react-router'
@@ -20,8 +21,8 @@ function ListaClubes() {
   const cargando = clubes.cargando || unidades.cargando || miembros.cargando
   const error = clubes.error ?? unidades.error ?? miembros.error
 
-  if (cargando) return <p className="text-sm text-gray-500">Cargando...</p>
-  if (error) return <p className="text-sm text-red-600">{error}</p>
+  if (cargando) return <Aviso>Cargando clubes…</Aviso>
+  if (error) return <Aviso tono="error">{error}</Aviso>
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
 

@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router'
 import NoEncontrado from './NoEncontrado'
 
+import Aviso from '../components/Aviso'
 import ListaUnidades from '../components/ListaUnidades'
 import { useClases, useClubes, useMiembros, useUnidades } from '../hooks/recursos'
 
@@ -15,8 +16,8 @@ function DetalleClub() {
   const cargando = clubes.cargando || unidades.cargando || miembros.cargando || clases.cargando
   const error = clubes.error ?? unidades.error ?? miembros.error ?? clases.error
 
-  if (cargando) return <p className="text-sm text-gray-500">Cargando...</p>
-  if (error) return <p className="text-sm text-red-600">{error}</p>
+  if (cargando) return <Aviso>Cargando el club…</Aviso>
+  if (error) return <Aviso tono="error">{error}</Aviso>
   const club = clubes.datos.find(club => club.id === Number(clubId))
 
   if (!club) {

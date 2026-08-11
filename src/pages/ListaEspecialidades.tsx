@@ -1,11 +1,12 @@
+import Aviso from '../components/Aviso'
 import EspecialidadCard from '../components/EspecialidadCard'
 import { useEspecialidades } from '../hooks/recursos'
 
 function ListaEspecialidades() {
   const especialidades = useEspecialidades()
 
-  if (especialidades.cargando) return <p className="text-sm text-gray-500">Cargando...</p>
-  if (especialidades.error) return <p className="text-sm text-red-600">{especialidades.error}</p>
+  if (especialidades.cargando) return <Aviso>Cargando especialidades…</Aviso>
+  if (especialidades.error) return <Aviso tono="error">{especialidades.error}</Aviso>
 
   return (
     <div className="px-4 py-8">
