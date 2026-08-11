@@ -28,14 +28,22 @@ Requiere **Node 22.22 o superior** (ver `.nvmrc`).
 
 ## Cómo correrlo
 
+Hacen falta **dos terminales**: la API y la aplicación.
+
 ```bash
 npm install     # instalar dependencias
-npm run dev     # servidor de desarrollo en http://localhost:5173
+
+npm run api     # terminal 1 — API REST en http://localhost:3000
+npm run dev     # terminal 2 — la app en http://localhost:5173
 ```
+
+Sin la API corriendo, la app carga pero muestra un error en cada página: los datos
+ya no vienen empaquetados con el código.
 
 Otros comandos:
 
 ```bash
+npm run api           # levanta la API REST sobre db.json
 npm run build         # compila TypeScript y genera dist/
 npm run preview       # sirve el build de producción
 npm run lint          # ESLint sobre todo el proyecto
@@ -45,9 +53,11 @@ npm run format:check  # verifica el formato sin escribir
 
 ## Modelo de datos
 
-Los tipos viven en `src/types/index.ts`. Los datos se sirven como JSON desde
-`public/` y se piden con `fetch`: hay un archivo por entidad (`clubes.json`,
-`unidades.json`, `miembros.json`, `clases.json`, `especialidades.json`).
+Los tipos viven en `src/types/index.ts`. Los datos están en `db.json` y los sirve
+[json-server](https://github.com/typicode/json-server) como una API REST en
+`http://localhost:3000`, con un recurso por entidad: `/clubes`, `/unidades`,
+`/miembros`, `/clases` y `/especialidades`. Acepta `GET`, `POST`, `PUT` y `DELETE`,
+y los cambios se guardan en `db.json`.
 
 - **Club** — nombre, lema, logo, ciudad, estado, fechas de inicio y fin, si está activo.
 - **Unidad** — grupo dentro de un club, con capitán y consejero (referencias a miembros) y sexo.
@@ -72,17 +82,13 @@ multigeneracional.
 ## Estructura
 
 ```
-public/                  Servido tal cual desde la raíz
-├── clubes.json
-├── unidades.json
-├── miembros.json
-├── clases.json
-└── especialidades.json
+db.json                  Los datos; json-server los sirve y los escribe
+public/logos/            Imágenes, servidas tal cual desde la raíz
 
 src/
 ├── App.tsx              Rutas y cabecera
 ├── main.tsx             Punto de entrada
-├── constants.ts         Etiquetas de la interfaz
+├── constants.ts         URL de la API y etiquetas de la interfaz
 ├── types/index.ts       Interfaces del dominio
 ├── hooks/               Lógica con estado, reutilizable
 │   ├── useDatos.ts      Hook genérico: fetch + carga + error
