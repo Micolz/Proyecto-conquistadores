@@ -3,6 +3,7 @@ import ListaClubes from './pages/ListaClubes'
 import DetalleClub from './pages/DetalleClub'
 import NoEncontrado from './pages/NoEncontrado'
 import ListaEspecialidades from './pages/ListaEspecialidades'
+import NuevoClub from './pages/NuevoClub'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<ListaClubes />} />
+        <Route path="/clubes/nuevo" element={<NuevoClub />} />
         <Route path="/clubes/:clubId" element={<DetalleClub />} />
         <Route path="/especialidades" element={<ListaEspecialidades />} />
         <Route path="*" element={<NoEncontrado />} />

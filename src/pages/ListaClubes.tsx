@@ -1,7 +1,7 @@
 import Aviso from '../components/Aviso'
 import ClubCard from '../components/ClubCard'
 import ListaUnidades from '../components/ListaUnidades'
-import { useSearchParams } from 'react-router'
+import { Link, useSearchParams } from 'react-router'
 import { type ChangeEvent } from 'react'
 import { useClubes, useMiembros, useUnidades } from '../hooks/recursos'
 
@@ -43,8 +43,8 @@ function ListaClubes() {
   return (
     <div className="px-4 py-8">
       <div className="mx-auto max-w-5xl">
-        <h1 className="mb-4 text-3xl font-bold text-gray-900">Clubes</h1>
-
+        <h1 className="mb-4 text-3xl font-bold text-gray-900">Clubes</h1>{' '}
+        <Link to="/clubes/nuevo">Nuevo club</Link>
         <label className="mb-6 block">
           <span className="mb-1 block text-xs font-semibold tracking-wide text-gray-500 uppercase">
             Filtrar por ciudad/nombre
